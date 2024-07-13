@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block body %}
+<body>
+  {% include 'navbar.html' %}
+  <div class="hero is-primary is-fullheight">
+		<div class="hero-body">
+			<div class="container">
+				<div class="columns is-centered">
+					<div class="column">
+                        <div class="box">
+                          <div class="column is-centered">
+                            <p style="color: black;" class="title is-centered" >Lista Maszyn</p>
+                          {% if access != 1 %}
+                            <a href="/add_machine/" class="button is-dark is-focused">Dodaj nową linię</a>&nbsp;
+                          {% endif %}
+                          </div>
+                            <table class="table is-striped is-hoverable is-fullwidth">
+                                <thead>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Linia</th>
+                                        <th>Miejscowość</th>
+                                        <th>Hala</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for m in machines %}
+                                    <tr>
+                                        <td>{{forloop.counter}}.</td>
+                                        <td>{{m.machine_name}}</td>
+                                        <td>{{m.machine_location }}</td>
+                                        <td>{{m.machine_warehouse}}</td>
+                                        <td><a href="/Machine_Readings/{{m.id}}/" class="button is-dark is-focused">>></a>&nbsp;
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+						</div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+{% endblock %}

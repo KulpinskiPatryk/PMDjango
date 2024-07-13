@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block body %}
+<body>
+  {% include 'navbar.html' %}
+  <div class="hero is-primary is-fullheight">
+		<div class="hero-body">
+			<div class="container">
+				<div class="columns is-centered">
+					<div class="column">
+                        <div class="box">
+                          <div class="column is-centered">
+                          {% for m in machine %}
+                            <p style="color: black;" class="title is-centered" >{{m.machine_name}}</p>
+                              <div class="columns">
+                                  <div class="column is-four-fifths">
+                                      <h2>Adres IP Lini: {{m.machine_ip_address}}</h2>
+                                      <h2>Szafa Sterownika Lini: {{m.machine_rack}}</h2>
+                                      <h2>Slot sterownika: {{m.machine_slot}}</h2>
+                                  </div>
+                                  {% if access != 1 %}
+                                  <div class="column">
+                                    <a href="/edit/{{m.id}}/" class="button is-dark is-focused is-small">Edytuj dane Lini</a>
+                                  </div>
+                                  {% endif %}
+                              </div>
+                          {% endfor %}
+                          </div>
+                          {% autoescape off %}
+                          {{ plot_div }}
+                          {% endautoescape %}
+						</div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+{% endblock %}

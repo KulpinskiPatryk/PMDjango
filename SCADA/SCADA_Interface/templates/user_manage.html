@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block body %}
+<body>
+  {% include 'navbar.html' %}
+  <div class="hero is-primary is-fullheight">
+		<div class="hero-body">
+			<div class="container">
+				<div class="columns is-centered">
+					<div class="column">
+                        <div class="box">
+                          <div class="column is-centered">
+                            <p style="color: black;" class="title is-centered" >Lista Użytkowników</p>
+                              <button  onclick="document.location='/Register/'" class="button is-dark">Zarejestruj się</button>
+                                <table class="table is-striped is-hoverable is-fullwidth">
+                                    <thead>
+                                        <tr>
+                                            <th>Index</th>
+                                            <th>Użytkownik</th>
+                                            <th>Poziom Dostępu</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for u in users %}
+                                        <tr>
+                                            <td>{{forloop.counter}}.</td>
+                                            <td>{{u.user}}</td>
+                                            {% if u.access == 3 %}
+                                            <td>Admin</td>
+                                            {% endif %}
+                                            {% if u.access == 2 %}
+                                            <td>Technician</td>
+                                            {% endif %}
+                                            {% if u.access == 1 %}
+                                            <td>User</td>
+                                            {% endif %}
+                                            <td><a href="/edit_user/{{u.id}}/" class="button is-dark">Edytuj Poziom Uprawnień</a></td>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+{% endblock %}

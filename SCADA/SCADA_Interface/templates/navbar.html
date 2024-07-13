@@ -1,0 +1,32 @@
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item">
+        {% load static %}
+        <img src="{% static 'images/scada_logo.png' %}" width="70" height="700">
+      </a>
+    </div>
+      {% if access == 3 %}
+      <div class="navbar-start">
+        <a class="navbar-item" onclick="document.location='/UsersManage/'">
+          Zarządzanie Użytkownikami
+        </a>
+      {% endif %}
+        <a class="navbar-item" onclick="document.location='/MainPage/'">
+          Podgląd Maszyn
+        </a>
+
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-primary">
+              <strong>{{user}}</strong>
+            </a>
+            <a class="button is-light" onclick="document.location='/Logout/'">
+              Wyloguj się
+            </a>
+          </div>
+        </div>
+      </div>
+  </nav>

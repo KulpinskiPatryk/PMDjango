@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+{% include 'navbar.html' %}
+<div class="hero is-primary is-fullheight">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+                    <form class="box" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                            <br>
+                            <h1 class="content"><u>Rejestracja Użytkownika</u></h1>
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="label">Nazwa Użytkownika</label>
+                                        <input type="text" class="input" name="username" placeholder="Wprowadź Nazwę Użytkownika" required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="label">Email</label>
+                                        <input type="email" class="input" name="email" placeholder="Podaj Email" required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="label">Hasło</label>
+                                        <input type="password" class="input" name="password" placeholder="Wprowadź Hasło" required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="label">Potwierdź Hasło</label>
+                                        <input type="password" class="input" name="confirm_password" placeholder="Potwierdź Hasło" required>
+                                    </div>
+                                </div>
+                        <button type="submit" class="button is-primary">Zarejestruj Użytkownika</button>
+                    </form>
+                    <div class="text">
+                        {% if messages %}
+                          <ul class="messages">
+                            {% for message in messages %}
+                              <li class="{{ message.tags }}">{{ message }}</li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
